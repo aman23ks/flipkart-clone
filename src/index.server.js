@@ -13,9 +13,12 @@ env.config(); //dotenv allows you to use value from your .env file.
 //mondodb connection
 mongoose
   .connect(
-    `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.n1jvx.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`,
+    `mongodb://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0-shard-00-00.ahqbj.mongodb.net:27017,cluster0-shard-00-01.ahqbj.mongodb.net:27017,cluster0-shard-00-02.ahqbj.mongodb.net:27017/${process.env.MONGO_DB_DATABASE}?ssl=true&replicaSet=atlas-79k3p5-shard-0&authSource=admin&retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
   )
+  .catch((err) => {
+    console.log(err);
+  })
   .then(() => {
     console.log("Database connected");
   });

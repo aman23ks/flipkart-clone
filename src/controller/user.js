@@ -26,8 +26,8 @@ exports.signup = (req, res) => {
     }
     if (data) {
       return res.status(201).json({
-        //user: data, //after running on postman you'll see all the data entered by the user
-        message: "User created Successfully..!",
+        user: data, //after running on postman you'll see all the data entered by the user
+        //message: "User created Successfully..!",
       });
     }
   });
