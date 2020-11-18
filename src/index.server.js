@@ -5,7 +5,8 @@ const bodyParser = require("body-parser"); //we can use app.use(express.json()) 
 const mongoose = require("mongoose");
 
 //routes
-const userRoutes = require("./routes/user");
+const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin/auth");
 
 //environment variable or you can say constants
 env.config(); //dotenv allows you to use value from your .env file.
@@ -32,7 +33,8 @@ app.use(
 app.use(bodyParser.json());
 
 //Middlewares : When you are making a request from POSTMAN or from a browser, and at the backend you are handling the request in between making the request and handling the request if you manipulate the data according to your requirement thats a middleware , so we'll write some functions so we can do that.
-app.use("/api", userRoutes); //Every request will be prefixed with 'api' for the userRoutes and the useRoutes will be called which are available in '/routes/user.js'
+app.use("/api", authRoutes); //Every request will be prefixed with 'api' for the userRoutes and the useRoutes will be called which are available in '/routes/user.js'
+app.use("/api", adminRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
