@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin/auth");
 const categoryRoutes = require("./routes/category");
+const productRoutes = require("./routes/product");
+
 //environment variable or you can say constants
 env.config(); //dotenv allows you to use value from your .env file.
 
@@ -36,6 +38,7 @@ app.use(express.json()); //since we are using Json data we are using json to par
 app.use("/api", authRoutes); //Every request will be prefixed with 'api' for the userRoutes and the useRoutes will be called which are available in '/routes/user.js'
 app.use("/api", adminRoutes);
 app.use("/api", categoryRoutes);
+app.use("/api", productRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
